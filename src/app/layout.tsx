@@ -1,3 +1,8 @@
+export const metadata = {
+  title: '3D Model Viewer',
+  description: 'A 3D model viewer application',
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -5,12 +10,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          type="module"
-          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"
-        ></script>
-      </head>
       <body>{children}</body>
     </html>
   )

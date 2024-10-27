@@ -19,11 +19,10 @@ export default function ModelViewer() {
         shadow-intensity="1"
         touch-action="pan-y"
         style={{ width: '500px', height: '500px', backgroundColor: '#f0f0f0' }}
-        onError={(error: any) => console.error('Model Viewer Error:', error)}
-        onLoad={() => console.log('Model loaded successfully')}
+        loading="eager"
+        reveal="auto"
       >
-        {/* Loading message */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black">
+        <div slot="poster" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black">
           Loading 3D model...
         </div>
       </model-viewer>
