@@ -1,85 +1,27 @@
 'use client'
 
-import React, { useRef, useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
-import { Canvas, useThree } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
-import * as THREE from 'three'
-import { Group } from 'three'
-import SceneLighting from './SceneLighting'
+import React, { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useGLTF, OrbitControls } from '@react-three/drei'
 
-// Dynamically import to ensure client-side rendering
-const DynamicCanvas = dynamic(() => import('@react-three/fiber').then((mod) => mod.Canvas), {
-  ssr: false
-})
-
-useGLTF.preload('/models/xybar2.gltf')
-
-function ModelWithLights() {
-  const { scene } = useGLTF('/models/xybar2.gltf')
-  const groupRef = useRef<Group>(null)
-
-  const position = {
-    x: 0,
-    y: -5,
-    z: 0
-  }
-
-  const rotation = {
-    x: THREE.MathUtils.degToRad(0),
-    y: THREE.MathUtils.degToRad(-45),
-    z: THREE.MathUtils.degToRad(2)
-  }
-
-  const scale = {
-    x: 6,
-    y: 6,
-    z: 6
-  }
-
-  useEffect(() => {
-    if (groupRef.current) {
-      groupRef.current.scale.set(scale.x, scale.y, scale.z)
-      groupRef.current.rotation.set(rotation.x, rotation.y, rotation.z)
-      groupRef.current.position.set(position.x, position.y, position.z)
-    }
-  }, [])
-
-  return (
-    <group ref={groupRef}>
-      <primitive object={scene} />
-      <SceneLighting showLightHelpers={true} />
-    </group>
-  )
-}
-
-function CameraController() {
-  const { camera } = useThree()
-  
-  useEffect(() => {
-    camera.position.set(0, 0, 15)
-    camera.updateProjectionMatrix()
-  }, [camera])
-
-  return null
+function ModelLoader() {
+  const { scene } = useGLTF('/xwall.glb')
+  return <primitive object={scene} />
 }
 
 export default function Bar() {
-  // Use state to ensure client-side rendering
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
   return (
-    <div style={{ width: '100%', height: '900px', position: 'relative' }}>
-      <DynamicCanvas shadows>
-        <CameraController />
-        <ModelWithLights />
-      </DynamicCanvas>
+    <div style={{ width: '100%', height: '900px' }}>
+      <Canvas>
+        <Suspense fallback={null}>
+          <ambientLight intensity={0.5} />
+          <ModelLoader />
+          <OrbitControls />
+        </Suspense>
+      </Canvas>
     </div>
   )
 }
+
+// Preload the model outside the component
+useGLTF.preload('/xwall.glb')
