@@ -2,7 +2,7 @@
   "menu": "Bread Street Kitchen",
   "menu_id": "bsk-001",
   "menu_sections": {
-    "salads": {
+    "🔵salads": {
             "section_id": "sal",
             "items": [
             {
@@ -65,7 +65,7 @@
             }
             ]
     },
-    "steaks": {
+    "⚪️steaks": {
             "section_id": "stk",
             "large_cuts": [
             {
@@ -104,7 +104,7 @@
             "specialties": [
             {
                 "id": "spc-001",
-                "name": "Classic Ramsay Beef Wellington",
+                "name": "Classic Beef Wellington",
                 "description": "served with creamy mashed potato & red wine jus",
                 "price": 120.00,
                 "notes": "for two, please allow 45 minutes"
@@ -215,7 +215,7 @@
             }
             ]
     },
-    "mains": {
+    "🟢mains": {
             "section_id": "mns",
             "items": [
             {
@@ -341,7 +341,7 @@
             }
             ]
     },
-    "sides": {
+    "🟠sides": {
             "section_id": "sid",
             "items": [
             {
@@ -391,7 +391,7 @@
             }
             ]
     },
-    "desserts": {
+    "🟣desserts": {
             "section_id": "des",
             "items": [
             {
@@ -432,7 +432,7 @@
             }
             ]
     },
-    "ice_cream_and_sorbet": {
+    "🔴ice_cream_and_sorbet": {
             "section_id": "ics",
             "price_per_scoop": 3.00,
             "ice_cream_flavors": [
@@ -472,7 +472,7 @@
                 }
             ]
     },
-    "drinks": {
+    "🟡drinks": {
             "section_id": "drk",
             "gin_and_tonic": [
                 {
